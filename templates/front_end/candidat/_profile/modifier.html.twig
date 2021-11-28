@@ -1,0 +1,159 @@
+{% extends '/front_end/base.html.twig' %}
+{% block title %}Khedemti | Profil{% endblock %}
+{% block css %}
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="{{ asset('/front-end/css/bootstrap.min.css') }}" type="text/css">
+
+    <!--Material Icon -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('/front-end/css/materialdesignicons.min.css') }}"/>
+
+    <link rel="stylesheet" type="text/css" href="{{ asset('/front-end/css/fontawesome.css') }}"/>
+
+    <link rel="stylesheet" type="text/css" href="{{ asset('/front-end/css/nice-select.css') }}"/>
+
+    <!-- selectize css -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('/front-end/css/selectize.css') }}"/>
+
+    <!-- Custom  Css -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('/front-end/css/style.css') }}"/>
+{% endblock %}
+{% block content %}
+    <script>
+        document.getElementById("topnav").setAttribute("class", "scroll-active scroll");
+    </script>
+    <section>
+        <div class="section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 mt-4 pt-2">
+                        <div class="component-wrapper rounded shadow">
+                            <div class="p-4 border-bottom bg-light">
+                                <h4 class="title mb-0"> Modifier votre profil</h4>
+                            </div>
+                            <div class="p-4">
+                                {{ form_start(form) }}
+
+                                <form name="candidat" method="post">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            {{ form_errors(form.nom) }}
+                                            <div class="form-group position-relative">
+                                                {{ form_label(form.nom) }}<span class="text-danger">*</span> :
+                                                {{ form_widget( form.nom, {
+                                                    'attr': {
+                                                        'class': 'form-control',
+                                                        'placeholder': 'Tapez votre nom',
+                                                    }}) }}
+                                            </div>
+                                        </div>
+                                        {{ form_errors(form.prenom) }}
+                                        <div class="col-md-6">
+                                            <div class="form-group position-relative">
+                                                {{ form_label(form.prenom) }}
+                                                <span class="text-danger">*</span> :
+                                                {{ form_widget( form.prenom, {
+                                                    'attr': {
+                                                        'class': 'form-control',
+                                                        'placeholder': 'Tapez votre prenom',
+                                                    }}) }}
+                                            </div>
+                                        </div>
+                                        {{ form_errors(form.dateNaissance) }}
+                                        <div class="col-md-12">
+                                            <div class="form-group mb-0">
+                                                <label for="date-de-naissance" class="required">Date de naissance
+                                                    <span class="text-danger">*</span> :
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-group position-relative">
+                                                <label class="text-muted">Jour :</label>
+                                                {{ form_widget( form.dateNaissance.day, {
+                                                    'attr': {
+                                                        'class': 'form-control'
+                                                    }}) }}
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-group position-relative">
+                                                <label class="text-muted">Mois :</label>
+                                                {{ form_widget( form.dateNaissance.month, {
+                                                    'attr': {
+                                                        'class': 'form-control'
+                                                    }}) }}
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-group position-relative">
+                                                <label class="text-muted">Année :</label>
+                                                {{ form_widget( form.dateNaissance.year, {
+                                                    'attr': {
+                                                        'class': 'form-control'
+                                                    }}) }}
+                                            </div>
+                                        </div>
+                                        {{ form_errors(form.sexe) }}
+                                        <div class="col-md-6">
+                                            <div class="form-group position-relative">
+                                                {{ form_label(form.sexe) }}
+                                                <span class="text-danger">*</span> :
+                                                {{ form_widget( form.sexe, {
+                                                    'attr': {
+                                                        'class': 'nice-select rounded w-100',
+                                                    }}) }}
+                                            </div>
+                                        </div>
+                                        {{ form_errors(form.tel) }}
+                                        <div class="col-md-6">
+                                            <div class="form-group position-relative">
+                                                {{ form_label(form.tel) }}
+                                                <span class="text-danger">*</span> :
+                                                {{ form_widget( form.tel, {
+                                                    'attr': {
+                                                        'class': 'form-control',
+                                                        'placeholder': 'Tapez votre numero',
+                                                    }}) }}
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            {{ form_errors(form.idPhoto) }}
+                                            <div class="form-group position-relative">
+                                                <label>Photo</label><span class="text-danger">*</span> :
+                                                {{ form_row(form.idPhoto, {
+                                                    'attr': {
+                                                        'class': 'btn btn-light w-100',
+                                                    }
+                                                }) }}
+                                            </div>
+                                        </div>
+                                    </div><!--end row-->
+                                    <div class="row">
+                                        <div class="col-md-3 m-auto">
+                                            {{ form_widget( form.submit, {
+                                                'label' : manipulation,
+                                                'attr': {
+                                                    'placeholder': 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                                                    'class': 'btn btn-primary w-100 m-auto'
+                                                }}) }}
+                                        </div><!--end col-->
+                                    </div><!--end row-->
+                                </form><!--end form-->
+                                {{ form_end(form) }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <a href="#" class="back-to-top rounded text-center" id="back-to-top" style="display: inline;">
+        <i class="mdi mdi-chevron-up d-block"> </i>
+    </a>
+
+    <!-- selectize js -->
+    <script src="front-end/js/selectize.min.js"></script>
+    <script src="front-end/js/jquery.nice-select.min.js"></script>
+    <script src="front-end/js/app.js"></script>
+{% endblock %}

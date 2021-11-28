@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Inscription - Khedemti</title>
+    <meta name="description" content=""/>
+    <meta name="keywords" content=""/>
+    <meta name="author" content="Themesdesign"/>
+
+    <link rel="shortcut icon" href="{{ asset('front-end/images/favicon.ico') }}">
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="{{ asset('front-end/css/bootstrap.min.css') }}" type="text/css">
+
+    <!--Material Icon -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('front-end/css/materialdesignicons.min.css') }}"/>
+
+    <link rel="stylesheet" type="text/css" href="{{ asset('front-end/css/selectize.css') }}"/>
+
+    <link rel="stylesheet" type="text/css" href="{{ asset('front-end/css/nice-select.css') }}"/>
+
+    <!-- Custom  Css -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('front-end/css/style.css') }}"/>
+
+</head>
+
+<body>
+<!-- Loader -->
+<div id="preloader">
+    <div id="status">
+        <div class="spinner">
+            <div class="double-bounce1"></div>
+            <div class="double-bounce2"></div>
+        </div>
+    </div>
+</div>
+<!-- Loader -->
+
+<div class="back-to-home rounded d-none d-sm-block">
+    <a href="{{ asset('accueil') }}" class="text-dark bg-light rounded d-inline-block text-center"><i
+                class="mdi mdi-home"></i></a>
+</div>
+
+<!-- Hero Start -->
+<section class="vh-100"
+         style="background-image: url({{ asset('/images/backgrounds/BG-inscription.jpg') }})">
+    <div class="home-center">
+        <div class="home-desc-center">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-9">
+                        <div class="login_page bg-white shadow rounded p-4">
+                            <div class="text-center">
+                                <p class="h2 text-uppercase text-primary pb-4 mb-4 border-bottom">
+                                    Inscription en tant que candidat</p>
+                            </div>
+                            {% for flashError in app.flashes('verify_email_error') %}
+                                <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+                            {% endfor %}
+
+                            {{ form_start(registrationForm) }}
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group position-relative">
+                                        <label>Email</label><span class="text-danger">*</span> :
+                                        {{ form_row(registrationForm.email, {
+                                            label: false,
+                                            'attr': {
+                                                'class': 'form-control',
+                                                'placeholder': 'Exemple@mail.com',
+                                            },
+                                        }) }}
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group position-relative">
+                                        <label>Mot de passe</label><span class="text-danger">*</span> :
+                                        {{ form_row(registrationForm.plainPassword, {
+                                            label: false,
+                                            'attr': {
+                                                'class': 'form-control',
+                                                'placeholder': 'Créer votre mot de passe',
+                                            },
+                                        }) }}
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group position-relative">
+                                        {{ form_label(registrationForm.candidat.nom) }}
+                                        <span class="text-danger">*</span> :
+                                        {{ form_row(registrationForm.candidat.nom, {
+                                            label : false,
+                                            'attr': {
+                                                'class': 'form-control',
+                                                'placeholder': 'Tapez votre nom',
+                                            },
+                                        }) }}
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group position-relative">
+                                        {{ form_label(registrationForm.candidat.prenom) }}
+                                        <span class="text-danger">*</span> :
+                                        {{ form_row(registrationForm.candidat.prenom, {
+                                            label : false,
+                                            'attr': {
+                                                'class': 'form-control',
+                                                'placeholder': 'Tapez votre prenom',
+                                            },
+                                        }) }}
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <div class="form-group position-relative">
+                                        {{ form_label(registrationForm.candidat.sexe) }}
+                                        <span class="text-danger">*</span> :
+                                        {{ form_row(registrationForm.candidat.sexe, {
+                                            label : false,
+                                            'attr': {
+                                                'class': 'nice-select rounded w-100',
+                                            },
+                                        }) }}
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group position-relative">
+                                        {{ form_label(registrationForm.candidat.tel) }}
+                                        <span class="text-danger">*</span> :
+                                        {{ form_row(registrationForm.candidat.tel, {
+                                            label : false,
+                                            'attr': {
+                                                'class': 'form-control',
+                                                'placeholder': 'Tapez votre numero',
+                                            },
+                                        }) }}
+                                    </div>
+                                </div>
+
+                                <div class="row col-md-6">
+                                    <div class="col-md-12">
+                                        <div class="form-group mb-0">
+                                            <label for="date-de-naissance" class="required">Date de naissance
+                                                <span class="text-danger">*</span> :
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group position-relative" style="color: grey">
+                                            <label class="text-muted">Jour :</label>
+                                            {{ form_row(registrationForm.candidat.dateNaissance.day, {
+                                                label : false,
+                                                'attr': {
+                                                    'class': 'form-control',
+                                                },
+                                            }) }}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group position-relative" style="color: grey">
+                                            <label class="text-muted">Mois :</label>
+                                            {{ form_row(registrationForm.candidat.dateNaissance.month, {
+                                                label : false,
+                                                'attr': {
+                                                    'class': 'form-control',
+                                                },
+                                            }) }}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4" id="year">
+                                        <div class="form-group position-relative" style="color: grey">
+                                            <label class="text-muted">Année :</label>
+                                            {{ form_row(registrationForm.candidat.dateNaissance.year, {
+                                                label : false,
+                                                'attr': {
+                                                    'class': 'form-control',
+                                                },
+                                            }) }}
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group position-relative mb-0">
+                                        <div class="col-md-12">
+                                            <label>Photo</label><span class="text-danger">*</span> :
+                                            {{ form_row(registrationForm.candidat.idPhoto, {
+                                                label: false,
+                                                'attr': {
+                                                    'class': 'mt-4 btn btn-light',
+                                                }
+                                            }) }}
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-md-12 mt-3">
+                                    <div class="form-group position-relative">
+                                        {{ form_row(registrationForm.agreeTerms, {
+                                            label: "J'accepte les termes d'utilisation",
+                                            'attr': {
+                                                'class': 'mx-2',
+                                            }
+                                        }) }}
+                                    </div>
+                                </div>
+                                <div class="col-md-6 m-auto">
+                                    <button type="submit" class="btn btn-primary w-100">S'inscrire</button>
+                                </div>
+                            </div>
+                            {{ form_end(registrationForm) }}
+                            <div class="row mt-3">
+                                <div class="col-md-6 text-center">
+                                    <p class="mb-0"><small class="text-dark mr-2">Vous avez deja un compte ?</small>
+                                        <a href="{{ asset('connexion') }}" class="text-dark font-weight-bold">Se
+                                            connecter</a>
+                                    </p>
+                                </div>
+                                <div class="col-md-6 text-center">
+                                    <p class="mb-0"><small class="text-dark mr-2">Vous etes une entreprise ?</small>
+                                        <a href="{{ asset('inscription/societe') }}" class="text-dark font-weight-bold">Espace
+                                            entreprise</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!--end col-->
+            </div><!--end row-->
+        </div> <!--end container-->
+    </div>
+</section><!--end section-->
+<!-- Hero End -->
+
+<!-- javascript -->
+<script src="{{ asset('front-end/js/jquery.min.js') }}"></script>
+<script src="{{ asset('front-end/js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ asset('front-end/js/jquery.easing.min.js') }}"></script>
+<script src="{{ asset('front-end/js/plugins.js') }}"></script>
+
+<!-- selectize js -->
+<script src="{{ asset('front-end/js/selectize.min.js') }}"></script>
+
+<script src="{{ asset('front-end/js/jquery.nice-select.min.js') }}"></script>
+
+<script src="{{ asset('front-end/js/app.js') }}"></script>
+
+</body>
+</html>
